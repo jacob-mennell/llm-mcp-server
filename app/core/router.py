@@ -15,7 +15,7 @@ async def route_to_model(prompt_data: PromptRequest) -> str:
     prompt: str = clean_prompt(prompt_data.prompt)
 
     if "summarize" in prompt:
-        return openai_client.call_openai(prompt, model="gpt-3.5-turbo")
+        return openai_client.call_openai(prompt, model="gpt-4")
     elif "legal" in prompt:
         return anthropic_client.call_claude(prompt)
     else:
