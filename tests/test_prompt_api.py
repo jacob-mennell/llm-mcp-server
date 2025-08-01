@@ -6,7 +6,7 @@ client = TestClient(app)
 
 
 def test_prompt():
-    api_key = os.getenv("OPENAI_API_KEY", "default-openai-api-key")
+    api_key = os.getenv("API_KEY", "default-api-key")
     response = client.post(
         "/v1/llm",
         headers={"x-api-key": api_key},

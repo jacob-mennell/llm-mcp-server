@@ -1,8 +1,18 @@
 from app.models import openai_client, anthropic_client, local_model
 from app.services.prompt_utils import clean_prompt
 
-async def route_to_model(prompt_data):
-    prompt = clean_prompt(prompt_data.prompt)
+from app.schemas.prompt import PromptRequest
+
+
+async def route_to_model(prompt_data: PromptRequest) -> str:
+    """
+    Routes the prompt to the appropriate model based on its content.
+    Args:
+        prompt_data (PromptRequest): The incoming prompt request.
+    Returns:
+        str: The model's response.
+    """
+    prompt: str = clean_prompt(prompt_data.prompt)
 
     if "summarize" in prompt:
         return openai_client.call_openai(prompt, model="gpt-3.5-turbo")
