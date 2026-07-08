@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request, Response
 from app.api.v1 import router as api_v1_router
+from app.api.mcp import router as mcp_router
 import logging
 
 logging.basicConfig(
@@ -35,6 +36,7 @@ def include_v1_router(app: FastAPI) -> None:
         app (FastAPI): The FastAPI application instance.
     """
     app.include_router(api_v1_router, prefix="/v1")
+    app.include_router(mcp_router, prefix="/v1/mcp")
 
 
 include_v1_router(app)
